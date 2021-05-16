@@ -1,0 +1,20 @@
+unit uProdutorModel;
+
+interface
+type
+ TProdutor= class
+ private
+   FCodigoProdutor        : integer;
+   FNomeProdutor          : string;
+   FIdentidadeProdutor    : string;
+
+ public
+   property  CodigoProdutor     : integer read FCodigoProdutor     write FCodigoProdutor;
+   property NomeProdutor        : string  read FNomeProdutor       write FNomeProdutor;
+   property FIdentidadeProdutor : string read FIdentidadeProdutor  write FIdentidadeProdutor;
+
+ end;
+
+implementation
+
+end.

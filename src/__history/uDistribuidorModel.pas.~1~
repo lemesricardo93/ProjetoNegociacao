@@ -1,0 +1,11 @@
+unit uDistribuidorModel;
+
+interface
+type
+ TDistribuidor = class
+
+ end;
+
+implementation
+
+end.

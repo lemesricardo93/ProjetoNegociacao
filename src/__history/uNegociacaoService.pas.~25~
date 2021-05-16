@@ -1,0 +1,62 @@
+unit uNegociacaoService;
+
+interface
+uses uNegociacaoModel, uNegociacaoDao;
+type
+  TNegociacaoService = class
+  private
+    FCabecalhoNegociacao : TCabecalhoNegociacaoDao;
+    FItemCabecalho : TItemNegociacaoDao;
+  public
+   procedure SalvarNegociacao(pNumped, pCodProdutor, pCodDistribuidor : integer; pStatus : String);
+
+
+
+  constructor create;
+
+  end;
+
+implementation
+ uses udmDados;
+{ TProdutorService }
+
+constructor TNegociacaoService.create;
+begin
+ FCabecalhoNegociacao := TCabecalhoNegociacaoDao.create;
+
+end;
+
+procedure TNegociacaoService.SalvarNegociacao(pNumped, pCodProdutor, pCodDistribuidor : integer ; pStatus : string );
+var
+  gNegociacao : TCabecalhoNegociacao;
+  gNegociacaoItem : TItemCabecalho;
+begin
+   gNegociacao     := TCabecalhoNegociacao.Create;
+   gNegociacaoItem := TItemCabecalho.Create;
+   // gNegociacao.numpedCabecalho :=0;
+   gNegociacao.codprodutorCabecalho := pCodProdutor;
+   gNegociacao.coddistribuidorcabecalho :=  pCodProdutor;
+   gNegociacao.statusPedido             :=  pStatus;
+
+   FCabecalhoNegociacao.SalvarCabecalho(gNegociacao);
+
+   dmDados.ItemNegociacao.first;
+   while not dmDados.ItemNegociacao.Eof do
+   begin
+     gNegociacaoItem.codprodItem := dmDados.ItemNegociacaocodproduto.AsInteger;
+     gNegociacaoItem.quantidadeItem := dmDados.ItemNegociacaoquantidade.AsInteger;
+     gNegociacaoItem.precovendaItem  := dmDados.ItemNegociacaoprecovenda.AsFloat;
+
+     FCabecalhoNegociacao.
+
+
+   dmDados.ItemNegociacao.Next;
+   end;
+
+
+
+
+
+end;
+
+end.

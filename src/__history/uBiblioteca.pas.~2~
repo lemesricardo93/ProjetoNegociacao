@@ -1,0 +1,93 @@
+unit uBiblioteca;
+
+interface
+
+type
+  TBiblioteca = class
+
+  public
+    function cnpj(s: string): boolean;
+    function cpf(num: string): boolean;
+  end;
+
+implementation
+
+{ TBiblioteca }
+
+function TBiblioteca.cnpj(s: string): boolean;
+var
+  soma, dg1, dg2: integer;
+  x: shortint;
+  aux: string[1];
+  aux_cnpj: string[14];
+begin
+  if (s = '') or (s = '  .   .   /    -  ') then
+  begin
+    result := true;
+    exit;
+  end;
+  x := 1;
+  aux_cnpj := '';
+  while x < 19 do
+  begin
+    aux := copy(s, x, 1);
+    if ((aux <> '.') and (aux <> '/') and (aux <> '-')) then
+      aux_cnpj := aux_cnpj + aux;
+    x := x + 1;
+  end;
+  s := aux_cnpj;
+  soma := 0;
+  inc(soma, (strtointdef(s[1], 0) * 5));
+  inc(soma, (strtointdef(s[2], 0) * 4));
+  inc(soma, (strtointdef(s[3], 0) * 3));
+  inc(soma, (strtointdef(s[4], 0) * 2));
+  inc(soma, (strtointdef(s[5], 0) * 9));
+  inc(soma, (strtointdef(s[6], 0) * 8));
+  inc(soma, (strtointdef(s[7], 0) * 7));
+  inc(soma, (strtointdef(s[8], 0) * 6));
+  inc(soma, (strtointdef(s[9], 0) * 5));
+  inc(soma, (strtointdef(s[10], 0) * 4));
+  inc(soma, (strtointdef(s[11], 0) * 3));
+  inc(soma, (strtointdef(s[12], 0) * 2));
+
+  dg1 := soma - ((soma div 11) * 11);
+
+  if dg1 <= 1 then
+    dg1 := 0
+  else
+    dg1 := 11 - dg1;
+
+  soma := 0;
+  soma := soma + strtointdef(s[1], 0) * 6;
+  soma := soma + strtointdef(s[2], 0) * 5;
+  soma := soma + strtointdef(s[3], 0) * 4;
+  soma := soma + strtointdef(s[4], 0) * 3;
+  soma := soma + strtointdef(s[5], 0) * 2;
+  soma := soma + strtointdef(s[6], 0) * 9;
+  soma := soma + strtointdef(s[7], 0) * 8;
+  soma := soma + strtointdef(s[8], 0) * 7;
+  soma := soma + strtointdef(s[9], 0) * 6;
+  soma := soma + strtointdef(s[10], 0) * 5;
+  soma := soma + strtointdef(s[11], 0) * 4;
+  soma := soma + strtointdef(s[12], 0) * 3;
+  soma := soma + 2 * dg1;
+
+  dg2 := soma - ((soma div 11) * 11);
+
+  if dg2 <= 1 then
+    dg2 := 0
+  else
+    dg2 := 11 - dg2;
+
+  if (inttostr(dg1) = s[13]) and (inttostr(dg2) = s[14]) then
+    result := true
+  else
+    result := false;
+end;
+
+function TBiblioteca.cpf(num: string): boolean;
+begin
+
+end;
+
+end.

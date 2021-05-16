@@ -1,0 +1,72 @@
+unit uTelaPrincpal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Menus,uDmDados, Data.DB,
+  IBCustomDataSet, IBQuery;
+
+type
+  TForm1 = class(TForm)
+    MainMenu1: TMainMenu;
+    ff1: TMenuItem;
+    Produto1: TMenuItem;
+    Produtor1: TMenuItem;
+    Distribuidor1: TMenuItem;
+    Manutenodenegociao1: TMenuItem;
+    teste: TIBQuery;
+    DataSource1: TDataSource;
+    procedure Produto1Click(Sender: TObject);
+    procedure Produtor1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+{$R *.dfm}
+uses
+  uProdutoService,uTelaCliente,uTelaProduto;
+procedure TForm1.Produto1Click(Sender: TObject);
+var
+ ProdutoService : TProdutoService;
+  nome : string;
+  preco : Double;
+begin
+  try
+     Application.CreateForm(TfrmTelaProduto,frmTelaProduto);
+     frmTelaProduto.ShowModal;
+
+  finally
+
+  end;
+
+
+
+ ProdutoService := TProdutoService.create;
+
+  ProdutoService.salvarProduto(nome, preco);
+
+  FreeAndNil(ProdutoService);
+
+
+
+end;
+
+procedure TForm1.Produtor1Click(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TfrmTelaProdutor,frmTelaProdutor);
+    frmTelaProdutor.ShowModal;
+  finally
+    FreeandNil(frmTelaProdutor);
+
+  end;
+end;
+
+end.

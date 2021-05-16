@@ -1,0 +1,19 @@
+unit uProdutoModel;
+
+interface
+type
+ TProduto = class
+   private
+     FCodProduto : integer;
+     FNome       : string;
+     FPrecoVenda : Double;
+     FdataCadastroPRoduto : TDate;
+
+   public
+
+
+ end;
+
+implementation
+
+end.

@@ -1,0 +1,19 @@
+unit uDistribuidorModel;
+
+interface
+type
+ TDistribuidor = class
+ private
+   FCodigoDistribuidor : integer;
+   FNomeDistr          : string;
+   FCPFCNPJ            : string;
+
+
+ public
+
+
+ end;
+
+implementation
+
+end.
