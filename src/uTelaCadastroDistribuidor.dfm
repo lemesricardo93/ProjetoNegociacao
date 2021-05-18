@@ -61,6 +61,7 @@ object frmCadastrarDistribuidor: TfrmCadastrarDistribuidor
         Width = 60
         Height = 21
         Enabled = False
+        OEMConvert = True
         TabOrder = 0
       end
       object edtNomeDistr: TEdit
@@ -75,6 +76,7 @@ object frmCadastrarDistribuidor: TfrmCadastrarDistribuidor
         Top = 72
         Width = 121
         Height = 21
+        ReadOnly = True
         TabOrder = 2
       end
     end

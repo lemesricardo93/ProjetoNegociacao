@@ -36,10 +36,19 @@ var
  ProdutoService : TProdutoService;
 begin
  ProdutoService := TProdutoService.create;
-
-  ProdutoService.salvarProduto(edtNomeProduto.Text, StrToFloat(mskPrecoVenda.Text));
-
-  FreeAndNil(ProdutoService);
+   try
+     
+     ProdutoService.salvarProduto(edtNomeProduto.Text, StrToFloat(mskPrecoVenda.Text));
+     ShowMessage('Produto cadastrado com Sucesso');
+     FreeAndNil(ProdutoService);
+    except
+      on E: Exception do
+      begin
+      FreeAndNil(ProdutoService);
+      ShowMessage('Erro ao Conectar no Banco' + 'Motivo' + E.message);
+      end;
+    end;
+ 
 
 end;
 

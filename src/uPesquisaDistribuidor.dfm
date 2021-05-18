@@ -19,18 +19,20 @@ object frmTelaDistribuidor: TfrmTelaDistribuidor
     Width = 585
     Height = 321
     TabOrder = 0
-    object DBGrid1: TDBGrid
+    object dbdistribuidor: TDBGrid
       Left = 1
       Top = 63
       Width = 541
       Height = 120
       DataSource = DtSourcePesquisaDistribuidor
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnCellClick = dbdistribuidorCellClick
     end
     object GroupBox1: TGroupBox
       Left = 1
@@ -59,7 +61,7 @@ object frmTelaDistribuidor: TfrmTelaDistribuidor
       Height = 53
       Caption = 'C'#243'digo'
       TabOrder = 2
-      object edtPesquisa: TEdit
+      object edtPesquisaDistr: TEdit
         Left = 5
         Top = 17
         Width = 201
@@ -68,14 +70,14 @@ object frmTelaDistribuidor: TfrmTelaDistribuidor
         TabOrder = 0
       end
     end
-    object Button1: TButton
+    object btnPesquisaDistr: TButton
       Left = 389
       Top = 5
       Width = 75
       Height = 38
       Caption = 'Pesquisar'
       TabOrder = 3
-      OnClick = Button1Click
+      OnClick = btnPesquisaDistrClick
     end
     object Button2: TButton
       Left = 467

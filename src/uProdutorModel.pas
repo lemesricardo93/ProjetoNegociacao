@@ -20,11 +20,13 @@ type
    FCodigoProdutor        : integer;
    FCodigoDistribuidor    : integer;
    FValorLimite           : Double;
+   FDISPONIVEL            : double;
 
  public
    property  CodigoProdutorLimite     : integer read FCodigoProdutor     write FCodigoProdutor;
    property CodigoDistribuidorLimite  : integer  read FCodigoDistribuidor write FCodigoDistribuidor;
    property ValorLimite : Double read FValorLimite  write FValorLimite;
+   property disponivel  : double read FDISPONIVEL   write FDISPONIVEL;
 
  end;
 

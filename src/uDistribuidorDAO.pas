@@ -13,7 +13,7 @@ type
 
     public
       procedure Salvar(pDistribuidor : TDistribuidor);
-      function  ConsultaDistribuidor(pNome : string ) : TDistribuidor;
+      function  ConsultaDistribuidor(pCodigo : integer;pNome : string ) : TDistribuidor;
 
 
 
@@ -29,7 +29,7 @@ implementation
 
 { TDistribuidorDao }
 
-function  TDistribuidorDao.ConsultaDistribuidor(pNome : string ) : TDistribuidor;
+function  TDistribuidorDao.ConsultaDistribuidor(pCodigo : integer; pNome : string ) : TDistribuidor;
 var
   distribuidor  : TDistribuidor;
 begin
@@ -47,8 +47,21 @@ begin
       dmDados.ibqueryDistribuidor.SQL.ADD('       ,NOME                   ');
       dmDados.ibqueryDistribuidor.SQL.ADD('       ,CNPJ                   ');
       dmDados.ibqueryDistribuidor.SQL.ADD(' FROM  SIAGRIDISTRIBUIDORTESTE ');
-      dmDados.ibqueryDistribuidor.SQL.ADD('WHERE (NOME like :nome)  ');
-      dmDados.ibqueryDistribuidor.ParamByName('nome').AsString := pNome + '%';
+       dmDados.ibqueryDistribuidor.SQL.ADD(' WHERE  1=1                          ');
+
+      if pNome <> '' then
+      begin
+        dmDados.ibqueryDistribuidor.SQL.ADD('AND (NOME like :nome)  ');
+        dmDados.ibqueryDistribuidor.ParamByName('nome').AsString := pNome + '%';
+      end;
+
+      if pCodigo > 0 then
+      begin
+        dmDados.ibqueryDistribuidor.SQL.ADD('AND CODDISTRIBUIDOR =  :coddistribuidor  ');
+        dmDados.ibqueryDistribuidor.ParamByName('coddistribuidor').AsInteger := pCodigo;
+
+      end;
+
       dmDados.ibqueryDistribuidor.Open;
 
       if not (dmDados.ibqueryDistribuidor.IsEmpty) then

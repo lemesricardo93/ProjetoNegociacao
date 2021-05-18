@@ -27,6 +27,25 @@ type
     ibQueryCabecalho: TIBQuery;
     ItemNegociacaonumped: TFloatField;
     ibqueryItem: TIBQuery;
+    DataSource2: TDataSource;
+    ibQueryCabecalhoNUMPED: TIntegerField;
+    ibQueryCabecalhoCODPRODUTOR: TIntegerField;
+    ibQueryCabecalhoCODDISTRIBUIDOR: TIntegerField;
+    ibQueryCabecalhoDATACADASTRO: TDateField;
+    ibQueryCabecalhoDISTRIBUIDOR: TWideStringField;
+    ibQueryCabecalhoPRODUTOR: TWideStringField;
+    ibQueryCabecalhoSTATUS: TWideStringField;
+    ibqueryItemNUMPEDITEM: TIntegerField;
+    ibqueryItemCODPROD: TIntegerField;
+    ItemNegociacaoDESCRICAO: TStringField;
+    ibqueryItemDESRICAO: TWideStringField;
+    ibqueryItemQUANTIDADE: TCurrencyField;
+    ibqueryItemPRECOVENDA: TFloatField;
+    ibQueryCabecalhoVLTOTAL: TFloatField;
+    ibquerySegunda: TIBQuery;
+    ibQueryCabecalhoDTAPROVACAO: TDateField;
+    ibQueryCabecalhoDTCANCELAMENTO: TDateField;
+    ibQueryCabecalhoDTCONCLUSAO: TDateField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

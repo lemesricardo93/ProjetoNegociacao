@@ -19,18 +19,20 @@ object frmCadastroProdutor: TfrmCadastroProdutor
     Width = 577
     Height = 276
     TabOrder = 0
-    object DBGrid1: TDBGrid
+    object dbProdutor: TDBGrid
       Left = 4
       Top = 63
       Width = 541
       Height = 120
-      DataSource = dtSourcePesquisaProdutor
+      DataSource = dtSourcePesquisaProdutorra
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
+      OnCellClick = dbProdutorCellClick
     end
     object GroupBox2: TGroupBox
       Left = 176
@@ -134,9 +136,9 @@ object frmCadastroProdutor: TfrmCadastroProdutor
       end
     end
   end
-  object dtSourcePesquisaProdutor: TDataSource
+  object dtSourcePesquisaProdutorra: TDataSource
     DataSet = dmDados.ibqueryProdutor
-    Left = 504
-    Top = 136
+    Left = 440
+    Top = 112
   end
 end

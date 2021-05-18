@@ -2,13 +2,13 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2021/03/12 08:20:41.000.131,=C:\Users\ricardo.filho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2021/05/09 19:36:37.000.345,C:\ProjetoSiagri\src\uTelaCliente.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
     <Transaction>2021/05/09 19:36:37.000.345,C:\ProjetoSiagri\src\uTelaCliente.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/09 19:36:37.000.345,C:\ProjetoSiagri\src\uTelaCliente.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
     <Transaction>2021/05/09 19:36:51.000.623,=C:\ProjetoSiagri\src\Unit3.pas</Transaction>
     <Transaction>2021/05/09 19:37:31.000.916,C:\ProjetoSiagri\src\uDmDados.pas=</Transaction>
     <Transaction>2021/05/09 19:38:14.000.257,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/09 19:44:52.000.186,C:\ProjetoSiagri\src\uDmDados.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
     <Transaction>2021/05/09 19:44:52.000.186,C:\ProjetoSiagri\src\uDmDados.dfm=C:\ProjetoSiagri\src\Unit1.dfm</Transaction>
+    <Transaction>2021/05/09 19:44:52.000.186,C:\ProjetoSiagri\src\uDmDados.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
     <Transaction>2021/05/09 19:59:39.000.772,C:\ProjetoSiagri\src\uPesquisaDistribuidor.dfm=C:\ProjetoSiagri\src\Unit3.dfm</Transaction>
     <Transaction>2021/05/09 19:59:39.000.772,C:\ProjetoSiagri\src\uPesquisaDistribuidor.pas=C:\ProjetoSiagri\src\Unit3.pas</Transaction>
     <Transaction>2021/05/09 20:15:15.000.049,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
@@ -46,31 +46,35 @@
     <Transaction>2021/05/15 17:24:09.000.823,=C:\ProjetoSiagri\src\Unit3.pas</Transaction>
     <Transaction>2021/05/15 17:25:43.000.645,C:\ProjetoSiagri\src\Unit1.pas=C:\ProjetoSiagri\src\uProdutorModel.pas</Transaction>
     <Transaction>2021/05/15 17:26:24.000.164,C:\ProjetoSiagri\src\Unit2.pas=C:\ProjetoSiagri\src\uProdutorService.pas</Transaction>
-    <Transaction>2021/05/16 10:00:40.833,C:\ProjetoSiagri\src\uPesquisaProdutor.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:00:40.833,C:\ProjetoSiagri\src\uPesquisaProdutor.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:13:21.490,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:13:23.666,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:14:09.142,C:\ProjetoSiagri\src\uNegociacaoDao.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:14:54.311,C:\ProjetoSiagri\src\uTelaProduto.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:14:54.311,C:\ProjetoSiagri\src\uTelaProduto.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:17:11.141,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:17:30.166,C:\ProjetoSiagri\src\uNegociacaoModel.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:19:59.864,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:20:36.742,C:\ProjetoSiagri\src\uConsultaNegociacao.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:20:36.742,C:\ProjetoSiagri\src\uConsultaNegociacao.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:20:55.881,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:21:50.451,C:\ProjetoSiagri\src\uTelaCadastroDistribuidor.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:21:50.451,C:\ProjetoSiagri\src\uTelaCadastroDistribuidor.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:39:13.948,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:40:18.916,C:\ProjetoSiagri\src\uTelaNegociacao.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:40:18.916,C:\ProjetoSiagri\src\uTelaNegociacao.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:42:10.154,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:42:18.300,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:42:55.791,C:\ProjetoSiagri\src\uPesquisaProduto.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
-    <Transaction>2021/05/16 10:42:55.791,C:\ProjetoSiagri\src\uPesquisaProduto.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
-    <Transaction>2021/05/16 10:48:14.334,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:48:31.830,C:\ProjetoSiagri\src\uNegociacaoService.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
-    <Transaction>2021/05/16 10:59:14.347,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 09:04:45.000.368,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 09:04:55.000.403,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 09:08:40.000.037,C:\ProjetoSiagri\src\uRelatorio.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 09:08:40.000.037,C:\ProjetoSiagri\src\uRelatorio.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:00:40.000.833,C:\ProjetoSiagri\src\uPesquisaProdutor.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:00:40.000.833,C:\ProjetoSiagri\src\uPesquisaProdutor.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:13:21.000.490,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:13:23.000.666,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:14:09.000.142,C:\ProjetoSiagri\src\uNegociacaoDao.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:14:54.000.311,C:\ProjetoSiagri\src\uTelaProduto.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:14:54.000.311,C:\ProjetoSiagri\src\uTelaProduto.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:17:11.000.141,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:17:30.000.166,C:\ProjetoSiagri\src\uNegociacaoModel.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:19:59.000.864,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:20:36.000.742,C:\ProjetoSiagri\src\uConsultaNegociacao.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:20:36.000.742,C:\ProjetoSiagri\src\uConsultaNegociacao.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:20:55.000.881,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:21:50.000.451,C:\ProjetoSiagri\src\uTelaCadastroDistribuidor.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:21:50.000.451,C:\ProjetoSiagri\src\uTelaCadastroDistribuidor.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:39:13.000.948,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:40:18.000.916,C:\ProjetoSiagri\src\uTelaNegociacao.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:40:18.000.916,C:\ProjetoSiagri\src\uTelaNegociacao.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:42:10.000.154,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:42:18.000.300,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:42:55.000.791,C:\ProjetoSiagri\src\uPesquisaProduto.pas=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
+    <Transaction>2021/05/16 10:42:55.000.791,C:\ProjetoSiagri\src\uPesquisaProduto.dfm=C:\ProjetoSiagri\src\Unit2.dfm</Transaction>
+    <Transaction>2021/05/16 10:48:14.000.334,=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:48:31.000.830,C:\ProjetoSiagri\src\uNegociacaoService.pas=C:\ProjetoSiagri\src\Unit1.pas</Transaction>
+    <Transaction>2021/05/16 10:59:14.000.347,=C:\ProjetoSiagri\src\Unit2.pas</Transaction>
   </Transactions>
 	<ProjectSortOrder AutoSort="0" SortType="0">
     <File Path="uDistribuidorDAO.pas"/>
@@ -106,5 +110,7 @@
     <File Path="uNegociacaoService.pas"/>
     <File Path="uConsultaNegociacao.pas"/>
     <File Path="uConsultaNegociacao.dfm"/>
+    <File Path="uRelatorio.pas"/>
+    <File Path="uRelatorio.dfm"/>
   </ProjectSortOrder>
 </BorlandProject>

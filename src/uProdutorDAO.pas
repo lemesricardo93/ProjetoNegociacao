@@ -11,8 +11,9 @@ type
     public
       procedure SalvarProdutor(pProdutor : TProdutor);
       procedure SalvarLimiteProdutor(pLimiteProdutor : TProdutorLimite);
+      function ConsultaLimiteProdutor (pCodigoProdutor, pCodigoDistribuidor : integer) : TProdutorLimite;
 
-      function  ConsultaProdutor(pNome : string ) : TProdutor;
+      function  ConsultaProdutor(pNome,pCpfCNPJ : string ) : TProdutor;
    constructor create;
 
    const SQLINSERT = 'INSERT INTO  SIAGRIPRODUTORTESTE (CODPRODUTOR,NOME, CPFCNPJ) VALUES (:id,:nome, :cpfcnpj)';
@@ -23,7 +24,50 @@ implementation
 
 { TProdutorDao }
 
-function TProdutorDao.ConsultaProdutor(pNome: string): TProdutor;
+function TProdutorDao.ConsultaLimiteProdutor(pCodigoProdutor,
+  pCodigoDistribuidor: integer): TProdutorLimite;
+var
+  produtorlimite : TProdutorLimite;
+begin
+  produtorlimite := TProdutorLimite.Create;
+ if not (dmDados.ibTransacaoSistema.Active) then
+ begin
+   dmDados.ibTransacaoSistema.StartTransaction;
+ end;
+     try
+       dmDados.ibqueryProdutorLimite.Close;
+       dmDados.ibqueryProdutorLimite.SQL.Clear;
+       dmDados.ibqueryProdutorLimite.SQL.ADD('SELECT  ((LI.limitetotal) - SUM(VLTOTAL ))  DISP,                     ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('          LI.LIMITETOTAL ,                                            ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         CAB.CODDISTRIBUIDOR,                                         ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         CAB.CODPRODUTOR                                              ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('     FROM  SIAGRICABNEGOCIACAO cab, SIAGRILIMITEPRODUTOR LI           ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('     WHERE CAB.codprodutor = li.codigoprodutord                       ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         and cab.coddistribuidor = li.codigodistribuidor              ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         and cab.coddistribuidor = :coddistribuidor                   ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         and cab.codprodutor = :codprodutor                           ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('         and cab.status =''A''                                        ');
+       dmDados.ibqueryProdutorLimite.SQL.ADD('     group by  CAB.CODDISTRIBUIDOR , CAB.CODPRODUTOR , LI.limitetotal ');
+       dmDados.ibqueryProdutorLimite.ParamByName('codprodutor').AsInteger := pCodigoProdutor;
+       dmDados.ibqueryProdutorLimite.ParamByName('coddistribuidor').AsInteger := pCodigoDistribuidor;
+       dmDados.ibqueryProdutorLimite.Open;
+
+       if  not dmDados.ibqueryProdutorLimite.IsEmpty then
+       begin
+         produtorlimite.ValorLimite :=  dmDados.ibqueryProdutorLimite.FieldByName('LIMITETOTAL').AsFloat;
+         produtorlimite.disponivel  :=   dmDados.ibqueryProdutorLimite.FieldByName('DISP').AsFloat;
+       end;
+
+       Result :=produtorlimite;
+
+
+    finally
+
+     end;
+
+end;
+
+function TProdutorDao.ConsultaProdutor(pNome,pCpfCNPJ : string): TProdutor;
 var
   produtor  : TProdutor;
 begin
@@ -39,8 +83,21 @@ begin
       dmDados.ibqueryProdutor.SQL.ADD('       ,NOME                  ');
       dmDados.ibqueryProdutor.SQL.ADD('       ,CPFCNPJ               ');
       dmDados.ibqueryProdutor.SQL.ADD(' FROM  SIAGRIPRODUTORTESTE    ');
-      dmDados.ibqueryProdutor.SQL.ADD('WHERE (NOME like :nome)  ');
-      dmDados.ibqueryProdutor.ParamByName('nome').AsString := pNome + '%';
+
+
+      if pNome <> '' then
+      begin
+        dmDados.ibqueryProdutor.SQL.ADD('WHERE 0=0 ');
+         dmDados.ibqueryProdutor.SQL.ADD('AND NOME LIKE (:nome)        ');
+        dmDados.ibqueryProdutor.ParamByName('nome').AsString := pNome + '%';
+      end;
+
+      if pCpfCNPJ <> '' then
+      begin
+        dmDados.ibqueryProdutor.SQL.ADD('AND CPFCNPJ = :cpfcnpj       ');
+        dmDados.ibqueryProdutor.ParamByName('cpfcnpj').AsString :=pCpfCNPJ;
+      end;
+
      dmDados.ibqueryProdutor.Open;
 
       if not (dmDados.ibqueryProdutor.IsEmpty) then
@@ -57,8 +114,7 @@ begin
          result := produtor;
       end;
     finally
-      dmDados.ibqueryProdutor.Close;
-      dmDados.ibqueryProdutor.Free;
+    
     end;
 end;
 
@@ -120,8 +176,7 @@ begin
        dmDados.ibTransacaoSistema.Commit;
 
      finally
-         dmDados.ibqueryProdutor.Close;
-          dmDados.ibqueryProdutor.Free;
+
      end;
 
 

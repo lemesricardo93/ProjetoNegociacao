@@ -28,7 +28,7 @@ var
   frmCadastrarDistribuidor: TfrmCadastrarDistribuidor;
 
 implementation
-  uses uDistribuidorModel, uDistribuidorService;
+  uses uDistribuidorModel, uDistribuidorService,uPesquisaDistribuidor;
 {$R *.dfm}
 
 procedure TfrmCadastrarDistribuidor.btnSalvarDistribuidorClick(Sender: TObject);
@@ -36,7 +36,25 @@ var
   distribuidorService : TDistribuidorService;
 begin
   distribuidorService := TDistribuidorService.create;
-  distribuidorService.SalvarDistribuidor(edtNomeDistr.Text, mskCNPJDistr.text);
+  if  mskCNPJDistr.text = '' then
+  begin
+    ShowMessage('informar CNPJ.');
+    Exit;
+  end;
+
+  try
+    distribuidorService.SalvarDistribuidor(edtNomeDistr.Text, mskCNPJDistr.text);
+    ShowMessage('Cadastro Realizado com Sucesso');
+    FreeAndNil(distribuidorService);
+  except
+      on E: Exception do
+      begin
+      FreeAndNil(distribuidorService);
+      ShowMessage('Erro ao Conectar no Banco' + 'Motivo' + E.message);
+      end;
+    end;
+
+
 end;
 
 end.

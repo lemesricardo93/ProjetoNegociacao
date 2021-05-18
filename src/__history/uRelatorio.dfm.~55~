@@ -1,0 +1,339 @@
+object frmRelatorio: TfrmRelatorio
+  Left = 0
+  Top = 0
+  Caption = 'Relatorio'
+  ClientHeight = 362
+  ClientWidth = 681
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object frxDBDataset1: TfrxDBDataset
+    UserName = 'frxDados'
+    CloseDataSource = False
+    DataSet = dmDados.ibQueryCabecalho
+    BCDToCurrency = False
+    Left = 528
+    Top = 168
+  end
+  object frxReport1: TfrxReport
+    Version = '4.11.17'
+    DataSet = frxDBDataset1
+    DataSetName = 'frxDados'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 44332.390772800930000000
+    ReportOptions.LastChange = 44332.390772800930000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 344
+    Top = 96
+    Datasets = <
+      item
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+      end
+      item
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+      end>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 210.000000000000000000
+      PaperHeight = 297.000000000000000000
+      PaperSize = 9
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
+      object ReportTitle1: TfrxReportTitle
+        Height = 83.149660000000000000
+        Top = 18.897650000000000000
+        Width = 718.110700000000000000
+      end
+      object frxDadosNUMPED: TfrxMemoView
+        Left = 192.756030000000000000
+        Top = 258.063080000000000000
+        Width = 117.165430000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'NUMPED'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."NUMPED"]')
+      end
+      object Memo1: TfrxMemoView
+        Top = 258.063080000000000000
+        Width = 143.622140000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'N'#250'mero da negociacao')
+      end
+      object Memo2: TfrxMemoView
+        Left = 3.779530000000000000
+        Top = 292.078850000000000000
+        Width = 166.299320000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'C'#243'digo do distribuidor')
+      end
+      object frxDadosCODPRODUTOR: TfrxMemoView
+        Left = 192.756030000000000000
+        Top = 292.078850000000000000
+        Width = 79.370130000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'CODPRODUTOR'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."CODPRODUTOR"]')
+      end
+      object Memo3: TfrxMemoView
+        Left = 430.866420000000000000
+        Top = 255.283550000000000000
+        Width = 41.574830000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'Status')
+      end
+      object frxDadosDISTRIBUIDOR: TfrxMemoView
+        Left = 283.464750000000000000
+        Top = 292.078850000000000000
+        Width = 400.630180000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'DISTRIBUIDOR'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."DISTRIBUIDOR"]')
+      end
+      object frxDadosPRODUTOR: TfrxMemoView
+        Left = 283.464750000000000000
+        Top = 326.094620000000000000
+        Width = 400.630180000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'PRODUTOR'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."PRODUTOR"]')
+      end
+      object Memo4: TfrxMemoView
+        Left = 3.779530000000000000
+        Top = 326.874150000000000000
+        Width = 166.299320000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'C'#243'digo do PRODUTOR')
+      end
+      object frxDadosCODPRODUTOR1: TfrxMemoView
+        Left = 185.196970000000000000
+        Top = 326.094620000000000000
+        Width = 90.708720000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'CODPRODUTOR'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."CODPRODUTOR"]')
+      end
+      object frxDadosSTATUS2: TfrxMemoView
+        Left = 483.779840000000000000
+        Top = 254.283550000000000000
+        Width = 400.630180000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'STATUS2'
+        DataSet = frxDBDataset1
+        DataSetName = 'frxDados'
+        Memo.UTF8W = (
+          '[frxDados."STATUS2"]')
+      end
+      object Memo5: TfrxMemoView
+        Top = 371.448980000000000000
+        Width = 166.299320000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'Valor Total')
+      end
+      object Memo6: TfrxMemoView
+        Left = 7.559060000000000000
+        Top = 117.165430000000000000
+        Width = 718.110700000000000000
+        Height = 94.488250000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          
+            '----------------------------------------------------------------' +
+            '----------------------------------------------------------------' +
+            '----------------'
+          
+            '                                                                ' +
+            '         Cabe'#231'alho negocia'#231#227'o'
+          
+            '----------------------------------------------------------------' +
+            '----------------------------------------------------------------' +
+            '----------------')
+      end
+      object Memo7: TfrxMemoView
+        Left = -7.559060000000000000
+        Top = 396.850650000000000000
+        Width = 718.110700000000000000
+        Height = 94.488250000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          
+            '----------------------------------------------------------------' +
+            '----------------------------------------------------------------' +
+            '----------------'
+          
+            '                                                                ' +
+            '         ITENS DA NEGOCIA'#199#195'O'
+          
+            '----------------------------------------------------------------' +
+            '----------------------------------------------------------------' +
+            '----------------')
+      end
+      object Memo8: TfrxMemoView
+        Left = 6.000000000000000000
+        Top = 464.882190000000000000
+        Width = 143.622140000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'N'#250'mero da negocia'#231#227'o')
+      end
+      object frxDBDataset2numped: TfrxMemoView
+        Left = 162.960730000000000000
+        Top = 464.882190000000000000
+        Width = 158.740260000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'numped'
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        Memo.UTF8W = (
+          '[frxDBDataset2."numped"]')
+      end
+      object Memo9: TfrxMemoView
+        Left = 3.779530000000000000
+        Top = 502.677490000000000000
+        Width = 143.622140000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'C'#243'digo do Produto')
+      end
+      object frxDBDataset2codproduto: TfrxMemoView
+        Left = 7.559060000000000000
+        Top = 532.693260000000000000
+        Width = 94.488250000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'codproduto'
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        Memo.UTF8W = (
+          '[frxDBDataset2."codproduto"]')
+      end
+      object Memo10: TfrxMemoView
+        Left = 385.512060000000000000
+        Top = 502.677490000000000000
+        Width = 79.370130000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'Quantidade')
+      end
+      object frxDBDataset2quantidade: TfrxMemoView
+        Left = 385.512060000000000000
+        Top = 540.472790000000000000
+        Width = 79.370130000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'quantidade'
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        Memo.UTF8W = (
+          '[frxDBDataset2."quantidade"]')
+      end
+      object frxDBDataset2precovenda: TfrxMemoView
+        Left = 513.457020000000000000
+        Top = 543.472790000000000000
+        Width = 136.063080000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'precovenda'
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        Memo.UTF8W = (
+          '[frxDBDataset2."precovenda"]')
+      end
+      object Memo11: TfrxMemoView
+        Left = 514.016080000000000000
+        Top = 502.677490000000000000
+        Width = 143.622140000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'Pre'#231'o de Venda')
+      end
+      object frxDBDataset2DESCRICAO: TfrxMemoView
+        Left = 154.960730000000000000
+        Top = 540.472790000000000000
+        Width = 181.417440000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        DataField = 'DESCRICAO'
+        DataSet = frxDBDataset2
+        DataSetName = 'frxDBDataset2'
+        Memo.UTF8W = (
+          '[frxDBDataset2."DESCRICAO"]')
+      end
+      object Memo12: TfrxMemoView
+        Left = 158.740260000000000000
+        Top = 502.677490000000000000
+        Width = 143.622140000000000000
+        Height = 18.897650000000000000
+        ShowHint = False
+        Memo.UTF8W = (
+          'Descri'#231#227'o do produto')
+      end
+    end
+  end
+  object frxDBDataset2: TfrxDBDataset
+    UserName = 'frxDBDataset2'
+    CloseDataSource = False
+    DataSet = dmDados.ItemNegociacao
+    BCDToCurrency = False
+    Left = 448
+    Top = 248
+  end
+end

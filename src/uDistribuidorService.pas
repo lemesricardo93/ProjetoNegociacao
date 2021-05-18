@@ -7,7 +7,7 @@ type
   private
     FDistribuidorDAO : TDistribuidorDao;
   public
-   function  ConsultaDistribuidor(pNome : string ) : TDistribuidor;
+   function  ConsultaDistribuidor(pCodigo : integer; pNome : string ) : TDistribuidor;
    procedure SalvarDistribuidor(pNome , pCNPJ : string) ;
 
   constructor create;
@@ -18,12 +18,12 @@ implementation
 
 { TDistribuidorService }
 
-function TDistribuidorService.ConsultaDistribuidor(pNome: string): TDistribuidor;
+function TDistribuidorService.ConsultaDistribuidor(pCodigo : integer;pNome: string): TDistribuidor;
 var
  distribuidordao :  TDistribuidorDao;
 begin
  distribuidordao :=  TDistribuidorDao.create;
-  result :=  distribuidordao.ConsultaDistribuidor(pNome);
+  result :=  distribuidordao.ConsultaDistribuidor(pCodigo, pNome);
 end;
 
 constructor TDistribuidorService.create;

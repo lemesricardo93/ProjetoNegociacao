@@ -201,6 +201,7 @@ object frmTelaNegociacao: TfrmTelaNegociacao
         Width = 60
         Height = 21
         TabOrder = 13
+        OnChange = edtValorTotalNegociadoChange
       end
       object btnAdicionar: TButton
         Left = 7
@@ -213,11 +214,12 @@ object frmTelaNegociacao: TfrmTelaNegociacao
       end
       object btnLimparLista: TButton
         Left = 95
-        Top = 145
+        Top = 147
         Width = 114
         Height = 25
         Caption = 'Cancelar todos Item'
         TabOrder = 15
+        Visible = False
       end
       object edtPrecoNegociacao: TEdit
         Left = 308
@@ -247,7 +249,7 @@ object frmTelaNegociacao: TfrmTelaNegociacao
         Top = 15
         Width = 115
         Height = 25
-        Caption = 'Alterar Negocia'#231#227'o'
+        Caption = 'Pesquisar Negocia'#231#227'o'
         TabOrder = 1
         OnClick = Button2Click
       end

@@ -25,7 +25,7 @@ object frmTelaProdutor: TfrmTelaProdutor
       Top = 37
       Width = 585
       Height = 225
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       TabOrder = 0
       object TabSheet1: TTabSheet
         Caption = 'Cadastro de Produtor'

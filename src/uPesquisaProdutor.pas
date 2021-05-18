@@ -10,7 +10,7 @@ uses
 type
   TfrmCadastroProdutor = class(TForm)
     Panel1: TPanel;
-    DBGrid1: TDBGrid;
+    dbProdutor: TDBGrid;
     GroupBox2: TGroupBox;
     edtPesquisa: TEdit;
     GroupBox3: TGroupBox;
@@ -20,10 +20,11 @@ type
     edtPesquisaProdutor: TEdit;
     btnPesquisaProdutor: TButton;
     Button2: TButton;
-    dtSourcePesquisaProdutor: TDataSource;
+    dtSourcePesquisaProdutorra: TDataSource;
     GroupBox1: TGroupBox;
     ComboBox1: TComboBox;
     procedure btnPesquisaProdutorClick(Sender: TObject);
+    procedure dbProdutorCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -45,10 +46,34 @@ begin
   pesquisaProdutor := TProdutorService.create;
   gprodutor         := TProdutor.Create;
 
-  gprodutor :=  pesquisaProdutor.ConsultaProdutor(0,edtPesquisaProdutor.Text);
-  frmTelaNegociacao.edtCodigoProdutor.Text := IntToStr(gprodutor.CodigoProdutor);
-  frmTelaNegociacao.edtProdutorNegociacao.Text := gprodutor.NomeProdutor;
+  gprodutor :=  pesquisaProdutor.ConsultaProdutor(0,edtPesquisaProdutor.Text,'');
+end;
 
+procedure TfrmCadastroProdutor.dbProdutorCellClick(Column: TColumn);
+var
+  vnCodProdutor : String;
+  gProdutor     : TProdutor;
+  produtorService : TProdutorService;
+  idx :integer;
+begin
+ gProdutor     := TProdutor.Create;
+  produtorService := TProdutorService.create;
+  with dbProdutor.DataSource do
+
+    if dbProdutor.SelectedRows.Count > 0 then
+      for idx := 0 to dbProdutor.SelectedRows.Count - 1 do
+        begin
+           DataSet.GotoBookmark((dbProdutor.SelectedRows.items[idx]));
+           vnCodProdutor := '';
+           vnCodProdutor := DataSet.FieldByName('CODPRODUTOR').Value;
+      end;
+
+      gProdutor := produtorService.ConsultaProdutor(StrToInt(vnCodProdutor),edtPesquisaProdutor.Text,'');
+
+
+  frmTelaNegociacao.edtCodigoProdutor.Text :=  IntToStr(gProdutor.CodigoProdutor);
+  frmTelaNegociacao.edtProdutorNegociacao.Text     :=  gProdutor.NomeProdutor;
+  frmCadastroProdutor.Close;
 end;
 
 end.

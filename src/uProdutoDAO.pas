@@ -12,7 +12,7 @@ type
 
     public
       procedure Salvar(pProduto : TProduto);
-      function ConsultaProduto (pNome : string) : TProduto;
+      function ConsultaProduto (pCodProd : integer;  pNome : string) : TProduto;
 
 
 
@@ -26,7 +26,7 @@ implementation
    uses uTelaPrincpal;
 { TProdutoDao }
 
-function TProdutoDao.ConsultaProduto(pNome: string): TProduto;
+function TProdutoDao.ConsultaProduto(pCodProd : integer; pNome: string): TProduto;
 var
   produto  : TProduto;
 begin
@@ -40,12 +40,25 @@ begin
 
       dmDados.ibqueryProduto.Close;
       dmDados.ibqueryProduto.SQL.Clear;
-      dmDados.ibqueryProduto.SQL.ADD('SELECT  CODPRODUTO             ');
-      dmDados.ibqueryProduto.SQL.ADD('       ,NOME                   ');
-      dmDados.ibqueryProduto.SQL.ADD('       ,PRECO                   ');
-      dmDados.ibqueryProduto.SQL.ADD(' FROM SIAGRIPRODUTOTESTE  ');
-      dmDados.ibqueryProduto.SQL.ADD('WHERE (NOME like :nome)  ');
-      dmDados.ibqueryProduto.ParamByName('nome').AsString := pNome + '%';
+      dmDados.ibqueryProduto.SQL.ADD('SELECT  CODPRODUTO            ');
+      dmDados.ibqueryProduto.SQL.ADD('       ,NOME                  ');
+      dmDados.ibqueryProduto.SQL.ADD('       ,PRECO                 ');
+      dmDados.ibqueryProduto.SQL.ADD(' FROM SIAGRIPRODUTOTESTE      ');
+      dmDados.ibqueryProduto.SQL.Add('WHERE 1=1                     ');
+
+     if pCodProd > 0 then
+     begin
+       dmDados.ibqueryProduto.SQL.Add('AND CODPRODUTO = :codproduto');
+       dmDados.ibqueryProduto.ParamByName('codproduto').AsInteger := pCodProd;
+
+     end;
+
+      if pNome <> '' then
+      begin
+        dmDados.ibqueryProduto.SQL.Add('AND NOME LIKE :nome');
+        dmDados.ibqueryProduto.ParamByName('nome').AsString := pNome + '%';
+      end;
+
       dmDados.ibqueryProduto.Open;
 
       if not (dmDados.ibqueryProduto.IsEmpty) then

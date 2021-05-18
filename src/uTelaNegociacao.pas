@@ -46,17 +46,21 @@ type
     procedure btnAdicionarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure edtValorTotalNegociadoChange(Sender: TObject);
   private
+    function GravaStatusNegociacao(pStatus : integer) : String;
+    function VerficaNumped(pNumeroPedido : integer) : Boolean;
     { Private declarations }
   public
     { Public declarations }
+    Totalizador,vnSomatorio :double;
   end;
 
 var
   frmTelaNegociacao: TfrmTelaNegociacao;
 
 implementation
-uses uDmDados, uPesquisaDistribuidor,uPesquisaProdutor,uPesquisaProduto,uNegociacaoService,unegociacaoModel,uConsultaNegociacao;
+uses uDmDados, uPesquisaDistribuidor,uPesquisaProdutor,uPesquisaProduto,uNegociacaoService,unegociacaoModel,uConsultaNegociacao,uProdutorService,uProdutorModel;
 {$R *.dfm}
 
 procedure TfrmTelaNegociacao.btnAdicionarClick(Sender: TObject);
@@ -74,38 +78,65 @@ end;
 
 procedure TfrmTelaNegociacao.Button1Click(Sender: TObject);
 var
-  negociacaoService : TNegociacaoService;
-  vnStatus  : string;
-  negociacao    : TCabecalhoNegociacao;
+  negociacaoService    : TNegociacaoService;
+  negociacao           : TCabecalhoNegociacao;
+  produtorlimiteService : TProdutorLimiteService;
+  produtorlimite       : TProdutorLimite;
+  vnDisponivel         :double;
+
 begin
-  negociacao    := TCabecalhoNegociacao.Create;
- case cbxStatus.ItemIndex of
-   0:
-   begin
-    vnStatus := 'P';
-   end;
-   1:
-   begin
-     vnStatus := 'A';
-   end;
 
-   2:
-   begin
-     vnStatus := 'CO';
-   end;
-   3:
-   begin
-    vnStatus := 'CA';
-   end;
- end;
+  if (cbxStatus.ItemIndex <> 0) and (edtNumeroNegociacao.Text = '') then
+  begin
+    ShowMessage('O status não corresponde ao o Permitido. Por Favor altere para Pendente.');
+    Exit;
+  end;
 
+  negociacao           := TCabecalhoNegociacao.Create;
+  negociacaoService    := TNegociacaoService.create;
+  produtorlimiteService := TProdutorLimiteService.create;
+  produtorlimite       := TProdutorLimite.create;
 
+   try
 
-  negociacaoService := TNegociacaoService.create;
+     if VerficaNumped(StrToInt(edtNumeroNegociacao.Text)) then
+     begin
+       if cbxStatus.ItemIndex = -1 then
+       begin
+         ShowMessage('Informe o status');
+         Exit;
+       end;
 
-  negociacaoService.SalvarNegociacao(0,StrToInt(edtCodigoProdutor.Text),StrToInt(edtCodDistrNegociacao.Text),vnStatus);
+      negociacaoService.AtualizaCabecalho(StrToInt(edtNumeroNegociacao.Text),GravaStatusNegociacao(cbxStatus.ItemIndex));
+     end
+     else
+     begin
 
-  ShowMessage(IntToStr(negociacao.numpedCabecalho));
+      produtorlimite := produtorlimiteService.validaLimiteProdutor(StrToInt(edtCodigoProdutor.Text),StrToInt(edtCodDistrNegociacao.Text));
+
+      vnDisponivel :=   produtorlimite.disponivel;
+
+      if ((vnDisponivel + StrToFloat(edtValorTotalNegociado.Text)) > produtorlimite.ValorLimite ) then
+      begin
+       ShowMessage('Nãao será possivel gerar uma negociação pois o produtor'+ ' '  +edtProdutorNegociacao.Text + ' ' + 'não tem saldo disponivel '+#13#10 +
+                   'Limite Total: ' + ' ' + FloatToStr(produtorlimite.ValorLimite) + ' ' +#13#10 +
+                   'Disponivel : ' + '  '  +FloatToStr(vnDisponivel + StrToFloat(edtValorTotalNegociado.Text))) ;
+      end
+      else
+      begin
+        negociacaoService.SalvarNegociacao(0,StrToInt(edtCodigoProdutor.Text),StrToInt(edtCodDistrNegociacao.Text),GravaStatusNegociacao(cbxStatus.ItemIndex), StrToFloat(edtValorTotalNegociado.text));
+        ShowMessage('Negociação Cadastrada com Sucesso.');
+        FreeAndNil(negociacaoService);
+      end;
+     end;
+    except
+      on E: Exception do
+      begin
+        FreeAndNil(negociacaoService);
+        ShowMessage('Erro ao gravar informações' + 'Motivo' + E.message);
+      end;
+    end;
+
 end;
 
 procedure TfrmTelaNegociacao.Button2Click(Sender: TObject);
@@ -151,15 +182,53 @@ begin
 end;
 
 procedure TfrmTelaNegociacao.edtQuantidadeRequisitadaChange(Sender: TObject);
-var
-  Totalizador , vnSomatorio: double;
-
 begin
+Totalizador := 0;
+vnSomatorio := 0;
   if edtQuantidadeRequisitada.Text > '0' then
   begin
     vnSomatorio := (StrToFloat(edtQuantidadeRequisitada.Text) * StrToFloat(edtPrecoNegociacao.Text));
      Totalizador := Totalizador + vnSomatorio;
-     edtValorTotalNegociado.Text :=  FloatToStr(Totalizador);
+     edtValorTotalNegociado.Text :=  FloatToStr(StrToFloatDef(edtValorTotalNegociado.Text,0) + (vnSomatorio));
+  end;
+end;
+
+procedure TfrmTelaNegociacao.edtValorTotalNegociadoChange(Sender: TObject);
+begin
+ //edtValorTotalNegociado.text := FloatToSTr(StrToFloat(edtValorTotalNegociado.Text) +vnSomatorio);
+end;
+
+function  TfrmTelaNegociacao.GravaStatusNegociacao(pStatus : integer) : String;
+begin
+  case pStatus of
+    0:
+      begin
+       Result  := 'P';
+      end;
+    1:
+      begin
+        Result  := 'A';
+      end;
+    2:
+      begin
+        Result  := 'CO';
+      end;
+    3:
+      begin
+        Result  := 'CA';
+      end;
+  end;
+end;
+
+function TfrmTelaNegociacao.VerficaNumped(pNumeroPedido: integer): Boolean;
+begin
+  if pNumeroPedido > 0 then
+  begin
+    Result := True;
+  end
+  else
+  begin
+    Result := False;
   end;
 end;
 

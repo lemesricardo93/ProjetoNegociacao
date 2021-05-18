@@ -9,7 +9,7 @@ type
 
   public
     procedure salvarProduto(pNome : string; pPrecoVenda : Double );
-    function ConsultaPRoduto(pNome : string ) : TProduto;
+    function ConsultaPRoduto(pCodProduto : integer; pNome : string ) : TProduto;
 
   constructor create;
 
@@ -19,12 +19,12 @@ implementation
 
 { TProdutoService }
 
-function TProdutoService.ConsultaPRoduto(pNome: string): TProduto;
+function TProdutoService.ConsultaPRoduto(pCodProduto : integer ; pNome: string): TProduto;
 var
   produtodao : TProdutoDao;
 begin
    produtodao := TProdutoDao.create;
-  Result :=  produtodao.ConsultaProduto(pNome);
+  Result :=  produtodao.ConsultaProduto(pCodProduto,pNome);
 end;
 
 constructor TProdutoService.create;

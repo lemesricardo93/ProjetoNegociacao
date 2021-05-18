@@ -24,7 +24,8 @@ uses
   uNegociacaoDao in 'uNegociacaoDao.pas',
   uNegociacaoModel in 'uNegociacaoModel.pas',
   uNegociacaoService in 'uNegociacaoService.pas',
-  uConsultaNegociacao in 'uConsultaNegociacao.pas' {frmConsultaNegociacao};
+  uConsultaNegociacao in 'uConsultaNegociacao.pas' {frmConsultaNegociacao},
+  uRelatorio in 'uRelatorio.pas' {frmRelatorio};
 
 {$R *.res}
 
@@ -33,11 +34,5 @@ begin
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TdmDados, dmDados);
   Application.CreateForm(TForm1, Form1);
-  Application.CreateForm(TfrmCadastrarDistribuidor, frmCadastrarDistribuidor);
-  Application.CreateForm(TfrmTelaProduto, frmTelaProduto);
-  Application.CreateForm(TfrmTelaNegociacao, frmTelaNegociacao);
-  Application.CreateForm(TfrmCadastroProdutor, frmCadastroProdutor);
-  Application.CreateForm(TfrmPesquisaProduto, frmPesquisaProduto);
-  Application.CreateForm(TfrmConsultaNegociacao, frmConsultaNegociacao);
   Application.Run;
 end.

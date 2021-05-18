@@ -40,7 +40,7 @@ var
   frmTelaProdutor: TfrmTelaProdutor;
 
 implementation
-uses uPesquisaDistribuidor,uBiblioteca,uProdutorService,udmDados;
+uses uPesquisaDistribuidor,uBiblioteca,uProdutorService,udmDados,uProdutorModel;
 {$R *.dfm}
 
 procedure TfrmTelaProdutor.btnAdicionarLimiteClick(Sender: TObject);
@@ -58,30 +58,52 @@ end;
 
 procedure TfrmTelaProdutor.btnSalvarProdutorClick(Sender: TObject);
 var
-  produtor : TProdutorService;
+  produtorservice : TProdutorService;
   produtorlimite : TProdutorLimiteService;
   dados : TBiblioteca;
+  produtor     : TProdutor;
+  vnCNFRetirado : string;
 begin
+  vnCNFRetirado := '';
   dados :=  TBiblioteca.Create;
-  produtor := TProdutorService.create;
-  produtorlimite := TProdutorLimiteService.create;
-  produtor.SalvarProdutor(edtNomeProdutor.Text, dados.EliminaCaracter(mskCPFCNPJ.Text));
+  produtorservice := TProdutorService.create;
+  produtor     := TProdutor.Create;
 
-  if memoLimite.Lines.Count = 0 then
+  produtorlimite := TProdutorLimiteService.create;
+
+   if memoLimite.Lines.Count = 0 then
   begin
     ShowMessage('Insira por favor ao menos um distribuidor.');
-    edtCodDistLimite.SetFocus;
-  end
-  else
-  begin
+    Exit;
+   end;
+     
+  try
+    vnCNFRetirado :=  dados.EliminaCaracter(mskCPFCNPJ.Text);
+    produtorservice.SalvarProdutor(edtNomeProdutor.Text,vnCNFRetirado);
+
+    produtor := produtorservice.ConsultaProdutor(0,edtNomeProdutor.Text,vnCNFRetirado);
+
+
     dmDados.cdsProduorLimite.First;
     while not dmDados.cdsProduorLimite.Eof do
     begin
-      produtorlimite.SalvarProdutorLimite(dmDados.cdsProduorLimitecodigoProdutor.AsInteger,
+      produtorlimite.SalvarProdutorLimite(produtor.CodigoProdutor,
                                           dmDados.cdsProduorLimitecodigoDistribuidor.AsInteger,
                                           dmDados.cdsProduorLimitevalorLimite.AsFloat);
       dmDados.cdsProduorLimite.Next;
-    end;
+      end;
+      ShowMessage('Produtor e limite Cadastrado com Sucesso.');
+      FreeAndNil(produtor);
+      FreeAndNil(produtorlimite);
+   except
+    on E: Exception do
+    begin
+      FreeAndNil(produtor);
+      FreeAndNil(produtorlimite);
+      ShowMessage('Erro ao Conectar no Banco' + 'Motivo' + E.message);
+     end;
+  
+    
 
   end;
 end;

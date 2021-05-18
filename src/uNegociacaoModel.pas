@@ -1,6 +1,7 @@
 unit uNegociacaoModel;
 
 interface
+uses data.DB;
 type
   TCabecalhoNegociacao = class
  private
@@ -10,6 +11,9 @@ type
    FSTATUS          : string;
    FDATACADASTRO    : TDate;
    FDATACANCELAMENTO : TDate;
+   FDISTRIBUIDOR     : string;
+   FPRODUTOR         : string;
+   FVLTOTAL          : Double;
 
  public
    property  numpedCabecalho         : integer  read FNUMPED           write FNUMPED;
@@ -17,7 +21,9 @@ type
    property coddistribuidorcabecalho : integer  read FCODDISTRIBUIDOR  write FCODDISTRIBUIDOR;
    property statusPedido             : string   read FSTATUS           write FSTATUS;
    property dataCadastro             : TDate    read FDATACADASTRO     write FDATACADASTRO;
-   property dataCancelamento         : TDate    read FDATACANCELAMENTO write FDATACANCELAMENTO;
+   property distribuidor             : string   read FDISTRIBUIDOR     write FDISTRIBUIDOR;
+   property produtor                 : string   read FPRODUTOR         write FPRODUTOR;
+   property vltotal                 : double   read FVLTOTAL          write FVLTOTAL;
 
 
  end;
@@ -26,13 +32,13 @@ type
  private
    FNUMPEDITEM  : integer;
    FCODPROD     : integer;
-   FQUANTIDADE  : Double;
+   FQUANTIDADE  : double;
    FPRECOVENDA  : Double;
 
  public
    property  numpedItem    : integer read FNUMPEDITEM     write FNUMPEDITEM;
    property codprodItem    : integer  read FCODPROD write FCODPROD;
-   property quantidadeItem : Double read FQUANTIDADE  write FQUANTIDADE;
+   property quantidadeItem : double read FQUANTIDADE  write FQUANTIDADE;
    property precovendaItem : Double read FPRECOVENDA  write FPRECOVENDA;
 
  end;

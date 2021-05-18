@@ -50,7 +50,8 @@ object frmTelaProduto: TfrmTelaProduto
         Left = 100
         Top = 12
         Width = 121
-        Height = 20
+        Height = 21
+        Enabled = False
         TabOrder = 0
       end
       object edtNomeProduto: TEdit

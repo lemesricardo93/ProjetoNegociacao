@@ -18,6 +18,7 @@ type
     procedure Produto1Click(Sender: TObject);
     procedure Produtor1Click(Sender: TObject);
     procedure Manutenodenegociao1Click(Sender: TObject);
+    procedure Distribuidor1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -30,7 +31,20 @@ var
 implementation
 {$R *.dfm}
 uses
-  uProdutoService,uTelaCliente,uTelaProduto,uTelaNegociacao;
+  uProdutoService,uTelaCliente,uTelaProduto,uTelaNegociacao,uTelaCadastroDistribuidor;
+procedure TForm1.Distribuidor1Click(Sender: TObject);
+begin
+  try
+    Application.CreateForm(TfrmCadastrarDistribuidor, frmCadastrarDistribuidor);
+    frmCadastrarDistribuidor.ShowModal;
+  finally
+  FreeAndNil(frmCadastrarDistribuidor);
+
+  end;
+
+
+end;
+
 procedure TForm1.Manutenodenegociao1Click(Sender: TObject);
 begin
   try

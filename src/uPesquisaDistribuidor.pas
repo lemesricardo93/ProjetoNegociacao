@@ -10,16 +10,17 @@ uses
 type
   TfrmTelaDistribuidor = class(TForm)
     Panel1: TPanel;
-    DBGrid1: TDBGrid;
+    dbdistribuidor: TDBGrid;
     GroupBox1: TGroupBox;
     ComboBox1: TComboBox;
     GroupBox2: TGroupBox;
-    edtPesquisa: TEdit;
-    Button1: TButton;
+    edtPesquisaDistr: TEdit;
+    btnPesquisaDistr: TButton;
     Button2: TButton;
     DtSourcePesquisaDistribuidor: TDataSource;
-    procedure Button1Click(Sender: TObject);
+    procedure btnPesquisaDistrClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure dbdistribuidorCellClick(Column: TColumn);
   private
     { Private declarations }
   public
@@ -33,12 +34,12 @@ implementation
 uses uDmDados,udistribuidorModel,uDistribuidorService,uTelaCliente,uTelaCadastroDistribuidor,uTelaNegociacao ;
 {$R *.dfm}
 
-procedure TfrmTelaDistribuidor.Button1Click(Sender: TObject);
+procedure TfrmTelaDistribuidor.btnPesquisaDistrClick(Sender: TObject);
 var
   distribuidorService : TDistribuidorService;
   distribuidor        : TDistribuidor;
 begin
-  distribuidor := distribuidorService.ConsultaDistribuidor(edtPesquisa.Text);
+  distribuidor := distribuidorService.ConsultaDistribuidor(0, edtPesquisaDistr.Text);
 
   if Application.FindComponent('frmTelaProdutor') <> nil then
   begin
@@ -57,10 +58,38 @@ begin
   try
     Application.CreateForm(TfrmCadastrarDistribuidor,frmCadastrarDistribuidor);
     frmCadastrarDistribuidor.ShowModal;
+
   finally
     FreeAndNil(frmCadastrarDistribuidor);
   end;
 
+end;
+
+procedure TfrmTelaDistribuidor.dbdistribuidorCellClick(Column: TColumn);
+var
+  vnCodDistribuidor : String;
+  gDistribuidor    : TDistribuidor;
+  distribuidorService : TDistribuidorService;
+  idx :integer;
+begin
+  gDistribuidor       := TDistribuidor.Create;
+  distribuidorService := TDistribuidorService.create;
+
+  with dbdistribuidor.DataSource do
+
+    if dbdistribuidor.SelectedRows.Count > 0 then
+      for idx := 0 to dbdistribuidor.SelectedRows.Count - 1 do
+        begin
+           DataSet.GotoBookmark((dbdistribuidor.SelectedRows.items[idx]));
+           vnCodDistribuidor := '';
+           vnCodDistribuidor := DataSet.FieldByName('CODDISTRIBUIDOR').Value;
+      end;
+
+     gDistribuidor :=  distribuidorService.ConsultaDistribuidor(StrToInt(vnCodDistribuidor),edtPesquisaDistr.Text);
+     frmTelaNegociacao.edtCodDistrNegociacao.Text := IntToStr(gDistribuidor.CodigoDistribuidor);
+     frmTelaNegociacao.edtDistribuidorNegociacao.Text := gDistribuidor.NomeDistribuidor;
+
+    frmTelaDistribuidor.Close;
 end;
 
 end.
