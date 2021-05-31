@@ -35,13 +35,17 @@ type
     ibQueryCabecalhoDISTRIBUIDOR: TWideStringField;
     ibQueryCabecalhoPRODUTOR: TWideStringField;
     ibQueryCabecalhoSTATUS: TWideStringField;
-    ibQueryCabecalhoVLTOTAL: TBCDField;
     ibqueryItemNUMPEDITEM: TIntegerField;
     ibqueryItemCODPROD: TIntegerField;
     ItemNegociacaoDESCRICAO: TStringField;
-    ibqueryItemQUANTIDADE: TBCDField;
-    ibqueryItemPRECOVENDA: TBCDField;
     ibqueryItemDESRICAO: TWideStringField;
+    ibqueryItemQUANTIDADE: TCurrencyField;
+    ibqueryItemPRECOVENDA: TFloatField;
+    ibQueryCabecalhoVLTOTAL: TFloatField;
+    ibquerySegunda: TIBQuery;
+    ibQueryCabecalhoDTAPROVACAO: TDateField;
+    ibQueryCabecalhoDTCANCELAMENTO: TDateField;
+    ibQueryCabecalhoDTCONCLUSAO: TDateField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
@@ -72,8 +76,8 @@ begin
       strCaminho :=(ExtractFilePath(Application.exeName) + 'negociacao.ini');
       if (not FileExists(strCaminho)) then
       begin
-      //  WFile := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'CnfConsulta.ini');
-        WFile.WriteString('negociacao.ini','ConfiguracaoLocal', 'CaminhoBanco');
+        WFile := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'negociacao.ini');
+        WFile.WriteString('negociacao.ini','ConfiguracaoLocal', 'C:\ProjetoSiagri\data\DADOS.FDB');
       end;
     except
       on E: Exception do

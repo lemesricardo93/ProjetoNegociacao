@@ -35,12 +35,17 @@ type
     ibQueryCabecalhoDISTRIBUIDOR: TWideStringField;
     ibQueryCabecalhoPRODUTOR: TWideStringField;
     ibQueryCabecalhoSTATUS: TWideStringField;
-    ibQueryCabecalhoVLTOTAL: TBCDField;
     ibqueryItemNUMPEDITEM: TIntegerField;
     ibqueryItemCODPROD: TIntegerField;
     ItemNegociacaoDESCRICAO: TStringField;
     ibqueryItemDESRICAO: TWideStringField;
-    ibqueryItemPRECOVENDA: TBCDField;
+    ibqueryItemQUANTIDADE: TCurrencyField;
+    ibqueryItemPRECOVENDA: TFloatField;
+    ibQueryCabecalhoVLTOTAL: TFloatField;
+    ibquerySegunda: TIBQuery;
+    ibQueryCabecalhoDTAPROVACAO: TDateField;
+    ibQueryCabecalhoDTCANCELAMENTO: TDateField;
+    ibQueryCabecalhoDTCONCLUSAO: TDateField;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private

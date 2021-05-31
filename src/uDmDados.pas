@@ -76,8 +76,8 @@ begin
       strCaminho :=(ExtractFilePath(Application.exeName) + 'negociacao.ini');
       if (not FileExists(strCaminho)) then
       begin
-      //  WFile := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'CnfConsulta.ini');
-        WFile.WriteString('negociacao.ini','ConfiguracaoLocal', 'CaminhoBanco');
+       // WFile := TIniFile.Create(ExtractFilePath(Application.ExeName) + 'negociacao.ini');
+        WFile.WriteString('negociacao.ini','ConfiguracaoLocal', 'C:\ProjetoSiagri\data\DADOS.FDB');
       end;
     except
       on E: Exception do
@@ -89,7 +89,7 @@ begin
     try
       IBDatabase.Connected := False;
       IBDatabase.DataBaseName := LeIni('negociacao.ini', 'ConfiguracaoLocal',
-        'CaminhoBanco');
+        'C:\ProjetoSiagri\data\DADOS.FDB');
       IBDatabase.LoginPrompt := False;
       IBDatabase.Connected := True;
     except
